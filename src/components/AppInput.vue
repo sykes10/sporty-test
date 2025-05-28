@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineModel, useId } from 'vue';
+import { computed, useId } from 'vue';
 
 withDefaults(
   defineProps<{
