@@ -2,9 +2,9 @@
   <section class="flex gap-4 shadow-md bg-white">
     <div class="container mx-auto p-4">
       <!-- Filters with clear button -->
-      <div class="flex items-center gap-4">
+      <div class="flex flex-col md:flex-row items-center gap-4">
         <!-- Search and select in a grid -->
-        <div class="grid grid-cols-[2fr_1fr] gap-4 flex-grow">
+        <div class="grid md:grid-cols-[2fr_1fr] grid-cols-1 gap-4 flex-grow w-full">
           <AppInput label="Search Leagues" placeholder="MLS..." v-model="searchQuery">
             <template #icon>
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -15,12 +15,11 @@
 
           <AppSelect placeholder="All Sports" v-model="filterBySport" :options="sportOptions" />
         </div>
-
         <!-- Clear filters button -->
         <button
           v-if="hasActiveFilters"
           @click="handleClearFilters"
-          class="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg border bg-red-600 text-white border-gray-300 hover:bg-red-700 transition-colors"
+          class="w-full md:w-26 cursor-pointer flex items-center justify-center gap-2 px-4 py-2 rounded-lg border bg-red-600 text-white border-gray-300 hover:bg-red-700 transition-colors"
         >
           <X class="h-5 w-5" />
           <span>Clear</span>

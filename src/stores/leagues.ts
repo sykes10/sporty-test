@@ -47,23 +47,27 @@ export const useLeaguesStore = defineStore('leagues', () => {
     searchQuery.value = '';
   }
 
-  watch(data, (newData) => {
-    console.log('Fetched leagues:', newData);
-    if (newData && newData.leagues) {
-      leagues.value = newData.leagues.map((league) => ({
-        id: league.idLeague,
-        name: league.strLeague,
-        sport: league.strSport,
-        alternativeName: league.strLeagueAlternate || '',
-      }));
-      // Extract unique sports for filtering
-      const uniqueSports = new Set<string>();
-      leagues.value.forEach((league) => {
-        uniqueSports.add(league.sport);
-      });
-      sports.value = Array.from(uniqueSports).sort();
-    }
-  }, {once: true}); // Usually we want to run this only once after the first fetch
+  watch(
+    data,
+    (newData) => {
+      console.log('Fetched leagues:', newData);
+      if (newData && newData.leagues) {
+        leagues.value = newData.leagues.map((league) => ({
+          id: league.idLeague,
+          name: league.strLeague,
+          sport: league.strSport,
+          alternativeName: league.strLeagueAlternate || '',
+        }));
+        // Extract unique sports for filtering
+        const uniqueSports = new Set<string>();
+        leagues.value.forEach((league) => {
+          uniqueSports.add(league.sport);
+        });
+        sports.value = Array.from(uniqueSports).sort();
+      }
+    },
+    { once: true },
+  ); // Usually we want to run this only once after the first fetch
 
   return {
     sports,

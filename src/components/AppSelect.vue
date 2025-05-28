@@ -52,4 +52,3 @@ const normalizedOptions = computed(() => {
   return props.options as Option[];
 });
 </script>
-
