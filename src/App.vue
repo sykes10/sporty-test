@@ -1,47 +1,34 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { useFetch } from '@vueuse/core';
+import LeagueCard from '@/components/LeagueCard.vue';
+import AppHeader from '@/components/AppHeader.vue';
+import type { LeaguesResponse } from '@/types/api';
+import { useBadgeStore } from '@/stores/league';
+const badgeStore = useBadgeStore();
+
+const { data, error, isFetching } = useFetch(
+  'https://www.thesportsdb.com/api/v1/json/3/all_leagues.php',
+).json<LeaguesResponse>();
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
+  <AppHeader></AppHeader>
+  <img v-if="badgeStore.badgeToShow" :src="badgeStore.badgeToShow" alt="" />
+  <main class="container mx-auto p-4">
+    <div v-if="error">{{ error }}</div>
+    <div v-else-if="isFetching && !data">...fetching</div>
+    <section v-else-if="data">
+      <h2 class="text-2xl mb-4">Featured Leagues</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <LeagueCard
+          v-for="league in data.leagues"
+          :key="league.idLeague"
+          :idLeague="league.idLeague"
+          :strLeague="league.strLeague"
+          :strSport="league.strSport"
+          :strLeagueAlternate="league.strLeagueAlternate"
+        />
+      </div>
+    </section>
   </main>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
-</style>
