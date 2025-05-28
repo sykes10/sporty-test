@@ -63,7 +63,7 @@ export const useLeaguesStore = defineStore('leagues', () => {
       });
       sports.value = Array.from(uniqueSports).sort();
     }
-  });
+  }, {once: true}); // Usually we want to run this only once after the first fetch
 
   return {
     sports,

@@ -6,6 +6,7 @@
     </nav>
   </header>
 </template>
+
 <script setup lang="ts">
 import { Trophy } from 'lucide-vue-next';
 </script>
