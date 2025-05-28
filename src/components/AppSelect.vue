@@ -3,7 +3,7 @@
     :id="inputId"
     v-model="modelValue"
     :aria-label="label"
-    class="w-full px-4 py-2 border rounded-lg outline-none text-black bg-white border-gray-300 focus:border-blue-500"
+    class="w-full h-10 px-4 py-2 border rounded-lg outline-none text-black bg-white border-gray-300 focus:border-blue-500"
   >
     <option value="" selected>{{ placeholder }}</option>
     <option v-for="option in normalizedOptions" :key="option.value" :value="option.value">

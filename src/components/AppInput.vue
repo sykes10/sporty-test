@@ -7,7 +7,7 @@
       :type="type"
       v-model="modelValue"
       :placeholder="placeholder"
-      class="w-full px-4 py-2 border rounded-lg outline-none text-black bg-white border-gray-300 focus:border-blue-500"
+      class="h-10 w-full px-4 py-2 border rounded-lg outline-none text-black bg-white border-gray-300 focus:border-blue-500"
       :class="{
         'pl-10': $slots.icon,
       }"

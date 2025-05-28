@@ -4,7 +4,7 @@
       <!-- Filters with clear button -->
       <div class="flex flex-col md:flex-row items-center gap-4">
         <!-- Search and select in a grid -->
-        <div class="grid md:grid-cols-[2fr_1fr] grid-cols-1 gap-4 flex-grow w-full">
+        <div class="grid md:grid-cols-[2fr_1fr] grid-cols-1 md:gap-4 gap-2 flex-grow w-full">
           <AppInput label="Search Leagues" placeholder="MLS..." v-model="searchQuery">
             <template #icon>
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -19,7 +19,7 @@
         <button
           v-if="hasActiveFilters"
           @click="handleClearFilters"
-          class="w-full md:w-26 cursor-pointer flex items-center justify-center gap-2 px-4 py-2 rounded-lg border bg-red-600 text-white border-gray-300 hover:bg-red-700 transition-colors"
+          class="w-full h-10 md:w-26 cursor-pointer flex items-center justify-center gap-2 px-4 py-2 rounded-lg border bg-red-600 text-white border-gray-300 hover:bg-red-700 transition-colors"
         >
           <XCircle class="h-5 w-5" />
           <span>Clear</span>
