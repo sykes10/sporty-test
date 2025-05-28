@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, defineProps } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useMemoizeBadges } from '@/composables/memoize-badges';
 import type { League } from '@/stores/leagues';
 

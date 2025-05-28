@@ -13,11 +13,11 @@ withDefaults(defineProps<{
 const modelValue = defineModel<string>()
 
 // Simple ID for label
-const inputId = computed(() => `input-${useId}`);
+const inputId = computed(() => `input-${useId()}`);
 </script>
 
 <template>
-  <div class="w-full">
+  <div class="w-full relative">
     <slot name="icon"></slot>
     <input
      :aria-label="label"
@@ -30,6 +30,5 @@ const inputId = computed(() => `input-${useId}`);
         'pl-10': $slots.icon,
       }"
     />
-
   </div>
 </template>
