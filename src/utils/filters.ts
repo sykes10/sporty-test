@@ -1,12 +1,5 @@
-// Utility functions for filtering leagues
 import type { League } from '@/stores/leagues';
 
-/**
- * Filters leagues by sport
- * @param leagues Array of leagues to filter
- * @param sportFilter Sport to filter by (empty string for no filter)
- * @returns Filtered array of leagues
- */
 export function filterLeaguesBySport(leagues: League[], sportFilter: string): League[] {
   if (!sportFilter) {
     return leagues;
@@ -15,12 +8,6 @@ export function filterLeaguesBySport(leagues: League[], sportFilter: string): Le
   return leagues.filter(league => league.sport === sportFilter);
 }
 
-/**
- * Searches leagues by name or alternative name
- * @param leagues Array of leagues to search
- * @param query Search query (empty string for no filter)
- * @returns Filtered array of leagues
- */
 export function searchLeaguesByName(leagues: League[], query: string): League[] {
   if (!query) {
     return leagues;
@@ -34,13 +21,6 @@ export function searchLeaguesByName(leagues: League[], query: string): League[] 
   );
 }
 
-/**
- * Apply all filters to leagues
- * @param leagues Array of leagues to filter
- * @param sportFilter Sport filter
- * @param searchQuery Search query
- * @returns Filtered array of leagues
- */
 export function filterLeagues(
   leagues: League[],
   sportFilter: string,
