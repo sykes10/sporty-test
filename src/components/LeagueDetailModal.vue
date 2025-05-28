@@ -33,7 +33,7 @@ import { useMemoizeBadges } from '@/composables/memoize-badges';
 import type { League } from '@/stores/leagues';
 
 const props = defineProps<{
-  league: League
+  league: League;
 }>();
 
 const badge = ref<string>('');

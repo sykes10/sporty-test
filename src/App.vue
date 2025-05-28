@@ -20,11 +20,7 @@ fetchLeagues();
     <div v-else-if="isLoading">...fetching</div>
     <section v-else-if="filteredLeagues.length > 0">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <LeagueCard
-          v-for="league in filteredLeagues"
-          :key="league.id"
-          :league="league"
-        />
+        <LeagueCard v-for="league in filteredLeagues" :key="league.id" :league="league" />
       </div>
     </section>
     <div v-else>

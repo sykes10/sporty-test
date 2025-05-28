@@ -13,16 +13,12 @@
             </template>
           </AppInput>
 
-          <AppSelect
-            placeholder="All Sports"
-            v-model="filterBySport"
-            :options="sportOptions"
-          />
+          <AppSelect placeholder="All Sports" v-model="filterBySport" :options="sportOptions" />
         </div>
 
         <!-- Clear filters button -->
         <button
-        v-if="hasActiveFilters"
+          v-if="hasActiveFilters"
           @click="handleClearFilters"
           class="cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg border bg-red-600 text-white border-gray-300 hover:bg-red-700 transition-colors"
         >

@@ -6,13 +6,16 @@ interface Option {
   label: string;
 }
 
-const props = withDefaults(defineProps<{
-  label?: string;
-  placeholder?: string;
-  options: Option[] | string[];
-}>(), {
-  placeholder: 'Select an option...'
-});
+const props = withDefaults(
+  defineProps<{
+    label?: string;
+    placeholder?: string;
+    options: Option[] | string[];
+  }>(),
+  {
+    placeholder: 'Select an option...',
+  },
+);
 
 const modelValue = defineModel<string>();
 
@@ -26,9 +29,9 @@ const normalizedOptions = computed(() => {
   }
 
   if (typeof props.options[0] === 'string') {
-    return (props.options as string[]).map(opt => ({
+    return (props.options as string[]).map((opt) => ({
       value: opt,
-      label: opt
+      label: opt,
     }));
   }
 
@@ -37,19 +40,15 @@ const normalizedOptions = computed(() => {
 </script>
 
 <template>
-    <select
-      :id="inputId"
-      v-model="modelValue"
-      :aria-label="label"
-      class="w-full px-4 py-2 border rounded-lg outline-none text-black bg-white border-gray-300 focus:border-blue-500"
-    >
-      <option value="" selected>{{ placeholder }}</option>
-      <option
-        v-for="option in normalizedOptions"
-        :key="option.value"
-        :value="option.value"
-      >
-        {{ option.label }}
-      </option>
-    </select>
+  <select
+    :id="inputId"
+    v-model="modelValue"
+    :aria-label="label"
+    class="w-full px-4 py-2 border rounded-lg outline-none text-black bg-white border-gray-300 focus:border-blue-500"
+  >
+    <option value="" selected>{{ placeholder }}</option>
+    <option v-for="option in normalizedOptions" :key="option.value" :value="option.value">
+      {{ option.label }}
+    </option>
+  </select>
 </template>

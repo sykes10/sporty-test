@@ -8,32 +8,32 @@ const mockLeagues: League[] = [
     id: '1',
     name: 'Premier League',
     sport: 'Soccer',
-    alternativeName: 'English Premier League'
+    alternativeName: 'English Premier League',
   },
   {
     id: '2',
     name: 'La Liga',
     sport: 'Soccer',
-    alternativeName: 'Primera División'
+    alternativeName: 'Primera División',
   },
   {
     id: '3',
     name: 'NBA',
     sport: 'Basketball',
-    alternativeName: 'National Basketball Association'
+    alternativeName: 'National Basketball Association',
   },
   {
     id: '4',
     name: 'NFL',
     sport: 'American Football',
-    alternativeName: 'National Football League'
+    alternativeName: 'National Football League',
   },
   {
     id: '5',
     name: 'MLB',
     sport: 'Baseball',
-    alternativeName: 'Major League Baseball'
-  }
+    alternativeName: 'Major League Baseball',
+  },
 ];
 
 describe('filterLeaguesBySport', () => {
@@ -73,8 +73,8 @@ describe('searchLeaguesByName', () => {
   it('should find leagues by alternative name correctly', () => {
     const result = searchLeaguesByName(mockLeagues, 'national');
     expect(result.length).toBe(2);
-    expect(result.map(league => league.id)).toContain('3'); // NBA
-    expect(result.map(league => league.id)).toContain('4'); // NFL
+    expect(result.map((league) => league.id)).toContain('3'); // NBA
+    expect(result.map((league) => league.id)).toContain('4'); // NFL
   });
 
   it('should be case insensitive', () => {

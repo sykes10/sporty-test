@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { computed, defineModel, useId } from 'vue';
 
-withDefaults(defineProps<{
-  label: string;
-  placeholder?: string;
-  type?: 'text'; // add more types as needed
-}>(), {
-  type: 'text',
-  placeholder: 'Type here...'
-});
+withDefaults(
+  defineProps<{
+    label: string;
+    placeholder?: string;
+    type?: 'text'; // add more types as needed
+  }>(),
+  {
+    type: 'text',
+    placeholder: 'Type here...',
+  },
+);
 
-const modelValue = defineModel<string>()
+const modelValue = defineModel<string>();
 
 // Simple ID for label
 const inputId = computed(() => `input-${useId()}`);
@@ -20,7 +23,7 @@ const inputId = computed(() => `input-${useId()}`);
   <div class="w-full relative">
     <slot name="icon"></slot>
     <input
-     :aria-label="label"
+      :aria-label="label"
       :id="inputId"
       :type="type"
       v-model="modelValue"

@@ -9,7 +9,9 @@
         ></div>
 
         <!-- Modal Content -->
-        <div class="relative bg-white rounded-lg shadow-xl max-w-lg w-full max-h-[90vh] overflow-auto z-10">
+        <div
+          class="relative bg-white rounded-lg shadow-xl max-w-lg w-full max-h-[90vh] overflow-auto z-10"
+        >
           <!-- Close Button -->
           <button
             class="absolute right-4 top-4 text-black hover:text-gray-700"
@@ -30,6 +32,6 @@
 
 <script setup lang="ts">
 import { useModalStore } from '@/stores/modal';
-import { X } from 'lucide-vue-next'
+import { X } from 'lucide-vue-next';
 const modalStore = useModalStore();
 </script>
