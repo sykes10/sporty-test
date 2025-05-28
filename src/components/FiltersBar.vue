@@ -21,7 +21,7 @@
           @click="handleClearFilters"
           class="w-full md:w-26 cursor-pointer flex items-center justify-center gap-2 px-4 py-2 rounded-lg border bg-red-600 text-white border-gray-300 hover:bg-red-700 transition-colors"
         >
-          <X class="h-5 w-5" />
+          <XCircle class="h-5 w-5" />
           <span>Clear</span>
         </button>
       </div>
@@ -35,7 +35,7 @@ import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import AppInput from '@/components/AppInput.vue';
 import AppSelect from '@/components/AppSelect.vue';
-import { Search, X } from 'lucide-vue-next';
+import { Search, XCircle } from 'lucide-vue-next';
 
 const leaguesStore = useLeaguesStore();
 const { searchQuery, sports, filterBySport } = storeToRefs(leaguesStore);
