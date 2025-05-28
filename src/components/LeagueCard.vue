@@ -1,38 +1,29 @@
 <template>
-  <article class="bg-gray-800 p-4 rounded-lg shadow-md relative flex flex-col justify-between">
-    <div
-      v-if="image"
-      class="bg-black/90 absolute w-full h-full inset-0 transition-colors duration-200 flex items-center justify-center rounded-lg"
-    >
-      <img :src="image" :alt="`${strLeague} badge`" class="object-scale-down w-full h-full" />
-      <span class="absolute top-2 right-2 text-white cursor-pointer" @click.stop="image = ''">
-        ✕
-      </span>
-    </div>
-    <div class="text-gray-300 flex flex-col">
-      <h2 class="font-bold text-lg mb-2">{{ strLeague }}</h2>
-      <p v-if="strLeagueAlternate"><span class="font-bold">Name:</span> {{ strLeagueAlternate }}</p>
-      <p><span class="font-bold">Sport:</span> {{ strSport }}</p>
-    </div>
-    <AppButton @click.stop="onClick"> See Badge </AppButton>
+  <article class="p-4 rounded-lg shadow-lg relative flex flex-col justify-between gap-2 cursor-pointer hover:scale-105 transition-transform duration-200 ease-in-out"
+           @click="onClick">
+      <h2 class="font-bold text-xl">{{ league.name }}</h2>
+      <p v-if="league.alternativeName"><span class="font-bold">AKA:</span> {{ league.alternativeName }}</p>
+      <span class="font-bold rounded-full bg-blue-200 text-blue-800 px-3 py-1 self-start">{{league.sport }} </span>
   </article>
 </template>
 
 <script setup lang="ts">
-import { useMemoizeBadges } from '@/composables/memoize-badges';
-import { ref } from 'vue';
-import AppButton from '@/components/AppButton.vue';
+import { h } from 'vue';
+import type { League } from '@/stores/leagues';
+import { useModalStore } from '@/stores/modal';
+import LeagueDetailModal from '@/components/LeagueDetailModal.vue';
 
 const props = defineProps<{
-  idLeague: string;
-  strLeague: string;
-  strSport: string;
-  strLeagueAlternate?: string;
+  league: League
 }>();
 
-const image = ref('');
+const modalStore = useModalStore();
 
-async function onClick() {
-  image.value = await useMemoizeBadges(props.idLeague);
+function onClick() {
+  modalStore.openModal({
+    render() {
+      return h(LeagueDetailModal, { league: props.league });
+    }
+  });
 }
 </script>

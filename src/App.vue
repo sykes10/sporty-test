@@ -1,34 +1,38 @@
 <script setup lang="ts">
-import { useFetch } from '@vueuse/core';
 import LeagueCard from '@/components/LeagueCard.vue';
 import AppHeader from '@/components/AppHeader.vue';
-import type { LeaguesResponse } from '@/types/api';
-import { useBadgeStore } from '@/stores/league';
-const badgeStore = useBadgeStore();
+import { useLeaguesStore } from '@/stores/leagues';
+import { storeToRefs } from 'pinia';
+import FiltersBar from '@/components/FiltersBar.vue';
+import Modal from '@/components/AppModal.vue';
 
-const { data, error, isFetching } = useFetch(
-  'https://www.thesportsdb.com/api/v1/json/3/all_leagues.php',
-).json<LeaguesResponse>();
+const leaguesStore = useLeaguesStore();
+const { isLoading, filteredLeagues, fetchError } = storeToRefs(leaguesStore);
+const { fetchLeagues } = leaguesStore;
+fetchLeagues();
 </script>
 
 <template>
   <AppHeader></AppHeader>
-  <img v-if="badgeStore.badgeToShow" :src="badgeStore.badgeToShow" alt="" />
+  <FiltersBar></FiltersBar>
   <main class="container mx-auto p-4">
-    <div v-if="error">{{ error }}</div>
-    <div v-else-if="isFetching && !data">...fetching</div>
-    <section v-else-if="data">
-      <h2 class="text-2xl mb-4">Featured Leagues</h2>
+    <div v-if="fetchError">{{ fetchError }}</div>
+    <div v-else-if="isLoading">...fetching</div>
+    <section v-else-if="filteredLeagues.length > 0">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <LeagueCard
-          v-for="league in data.leagues"
-          :key="league.idLeague"
-          :idLeague="league.idLeague"
-          :strLeague="league.strLeague"
-          :strSport="league.strSport"
-          :strLeagueAlternate="league.strLeagueAlternate"
+          v-for="league in filteredLeagues"
+          :key="league.id"
+          :league="league"
         />
       </div>
     </section>
+    <div v-else>
+      <h2 class="text-2xl mb-4">No Leagues Found</h2>
+      <p class="text-gray-500">Try changing the filters or check back later.</p>
+    </div>
   </main>
+
+  <!-- Global Modal -->
+  <Modal />
 </template>

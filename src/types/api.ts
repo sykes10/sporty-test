@@ -1,4 +1,4 @@
-export type League = {
+export type LeagueResponse = {
   idLeague: string;
   strLeague: string;
   strSport: string;
@@ -6,5 +6,5 @@ export type League = {
 };
 
 export type LeaguesResponse = {
-  leagues: League[];
+  leagues: LeagueResponse[];
 };
